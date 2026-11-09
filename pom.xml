@@ -6,11 +6,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.calculatrice</groupId>
-    <artifactId>calculatrice-scientifique</artifactId>
-    <version>1.0.0</version>
+    <artifactId>calculatrice-scientifique-v2</artifactId>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Calculatrice Scientifique</name>
+    <name>Calculatrice scientifique V2</name>
     <description>Une calculatrice scientifique web avec Java et Spring Boot</description>
 
     <parent>
