@@ -1,67 +1,116 @@
-# Calculatrice scientifique
+# Calculatrice scientifique V2
 
-Une application web pour effectuer des calculs simples et scientifiques.
+Application web pour effectuer des calculs simples et scientifiques, saisir des expressions avec des parenthèses et consulter les résultats de la session en cours.
 
-Projet de **Fadli Hamza**, développé en Java avec Spring Boot, HTML, CSS et JavaScript.
+Cette deuxième version reprend le premier projet avec une interface plus simple, un fond crème et des corrections du moteur de calcul.
 
 ![Aperçu de la calculatrice](docs/apercu.png)
 
 ## Fonctionnalités
 
-- Addition, soustraction, multiplication et division.
-- Parenthèses, puissances et racine carrée.
-- Sinus, cosinus et tangente en degrés.
-- Logarithme décimal (`log`) et logarithme népérien (`ln`).
-- Saisie au clavier ou avec les boutons.
-- Historique des 10 derniers calculs, conservé dans le navigateur.
-- Messages d’erreur pour les calculs impossibles ou les expressions incorrectes.
+- Effectuer des additions, soustractions, multiplications et divisions.
+- Utiliser les parenthèses et respecter les priorités des opérations.
+- Calculer un carré ou une racine carrée.
+- Utiliser le sinus, le cosinus et la tangente en degrés.
+- Calculer le logarithme décimal avec `log` et le logarithme népérien avec `ln`.
+- Saisir une expression au clavier ou avec les boutons.
+- Supprimer un caractère ou effacer toute la saisie.
+- Consulter les 10 derniers calculs de la session et réutiliser un résultat.
+- Commencer avec une saisie et un historique vides à chaque chargement de la page.
+- Signaler les expressions incorrectes et les calculs impossibles dans la page.
 
-L’interface garde un fond crème et les textes de présentation. Le calcul se fait dans un champ de saisie classique, avec de petits boutons simples et l’historique en dessous.
+## Technologies
 
-## Lancer le projet
+- Java 17 ou ultérieur.
+- Spring Boot 3.3 pour le serveur et l’API.
+- Maven 3.6 ou ultérieur pour les dépendances, les tests et la compilation.
+- HTML, CSS et JavaScript pour l’interface.
+- JUnit 5 pour les tests unitaires.
 
-Il faut Java 17 ou supérieur et Maven 3.6 ou supérieur.
+Les dépendances Java sont téléchargées par Maven. Aucune bibliothèque JavaScript externe n’est nécessaire pour utiliser l’application.
+
+## Installation et lancement
+
+Installez un JDK et Maven, puis ouvrez un terminal :
 
 ```sh
-git clone https://github.com/7amzvv/calculatrice-scientifique.git
-cd calculatrice-scientifique
+git clone https://github.com/7amzvv/calculatrice-scientifique-v2.git
+cd calculatrice-scientifique-v2
+java -version
+mvn -version
 mvn spring-boot:run
 ```
 
-Ouvrir ensuite http://localhost:8080 dans le navigateur.
+Ouvrez ensuite http://localhost:8080 dans un navigateur. Le serveur doit rester lancé pour effectuer les calculs.
 
-## Exemples
+Sous Windows, si `java` ou `mvn` n’est pas reconnu, vérifiez leur installation et leur présence dans la variable `PATH`.
 
-| Calcul | Résultat |
-| --- | --- |
-| `2+5*3` | `17` |
-| `(2+5)*3` | `21` |
-| `3^2` | `9` |
-| `sqrt(81)` | `9` |
-| `sin(30)` | environ `0.5` |
-| `log(100)` | `2` |
+## Exemple d’utilisation
 
-Utiliser un point pour les nombres décimaux et `*` pour multiplier. Les fonctions s’écrivent avec des parenthèses, par exemple `sqrt(16)`.
+1. Saisissez `2+5*3`, puis appuyez sur Entrée : le résultat est `17`.
+2. Saisissez `(2+5)*3` : le résultat est `21`.
+3. Saisissez `sqrt(81)+3^2` : le résultat est `18`.
+4. Essayez `sin(30)` : le résultat est proche de `0.5`.
+5. Cliquez sur un résultat dans l’historique pour le réutiliser.
+6. Rechargez la page : la saisie et l’historique sont de nouveau vides.
 
-La touche Entrée lance le calcul et Échap efface la saisie. Un clic sur un ancien résultat permet de le réutiliser.
+Le bouton `x²` insère `^2`. La touche xʸ n’est pas affichée ; les autres puissances restent possibles au clavier avec `^`. Utilisez `.` pour les décimales et `*` pour multiplier. Les fonctions s’écrivent avec des parenthèses.
 
-## Organisation du code
+Entrée lance le calcul. Échap efface la saisie. Le bouton « Effacer » vide l’historique de la session.
 
-- `service/ServiceCalculatrice.java` : analyse l’expression et effectue le calcul en respectant les priorités.
-- `controller/` : reçoit l’expression envoyée par le navigateur et renvoie le résultat ou une erreur.
-- `resources/static/index.html` : structure de la page.
-- `resources/static/style.css` : couleurs et présentation.
-- `resources/static/script.js` : boutons, appel au serveur et historique.
-- `src/test/` : tests du moteur de calcul.
+## Organisation des fichiers
 
-## Tests
-
-```sh
-mvn test
+```text
+calculatrice-scientifique-v2/
+├── src/
+│   ├── main/
+│   │   ├── java/com/calculatrice/
+│   │   │   ├── CalculatriceApplication.java
+│   │   │   ├── controller/
+│   │   │   └── service/ServiceCalculatrice.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       └── static/
+│   │           ├── index.html
+│   │           ├── style.css
+│   │           └── script.js
+│   └── test/java/com/calculatrice/service/
+│       └── ServiceCalculatriceTest.java
+├── .github/workflows/verification.yml
+├── docs/apercu.png
+├── .gitignore
+├── pom.xml
+└── README.md
 ```
 
-Le projet contient 21 tests pour vérifier les opérations, les priorités, les fonctions scientifiques et les erreurs.
+## Notions informatiques travaillées
 
-## Limites
+- Séparation entre interface, contrôleur et service Java.
+- Communication entre le navigateur et le serveur avec HTTP et JSON.
+- Analyse récursive d’une expression mathématique.
+- Gestion des parenthèses, des signes et des priorités des opérateurs.
+- Validation des entrées et traitement des erreurs.
+- Gestion des événements du clavier et des boutons en JavaScript.
+- Conservation temporaire des résultats dans un tableau en mémoire.
+- Tests unitaires avec JUnit et compilation avec Maven.
 
-Certains résultats décimaux sont approximatifs, car le programme utilise le type `double`. Les nombres complexes et les pourcentages ne sont pas pris en charge. La longueur d’une expression est limitée à 512 caractères après suppression des espaces.
+## Vérifications et limites
+
+```sh
+mvn verify
+node --check src/main/resources/static/script.js
+```
+
+- Les 21 tests JUnit passent : opérations, priorités, puissances, fonctions scientifiques, notation scientifique et expressions invalides.
+- La compilation et la création du fichier JAR avec Maven réussissent.
+- La vérification syntaxique du JavaScript passe.
+- L’application a été lancée et vérifiée dans le navigateur : calcul, présentation et historique vide après rechargement.
+- Les calculs utilisent le type `double` et certains résultats sont approximatifs.
+- Les fonctions trigonométriques utilisent les degrés, pas les radians.
+- Les nombres complexes, les pourcentages et les multiplications implicites ne sont pas pris en charge.
+- Une expression est limitée à 512 caractères après suppression des espaces.
+- L’historique n’est pas enregistré : recharger ou fermer la page le réinitialise.
+
+## Crédit
+
+Projet réalisé par Fadli Hamza.
