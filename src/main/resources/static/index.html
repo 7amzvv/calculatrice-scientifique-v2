@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#eeece4">
+    <title>Atelier — Calculatrice scientifique</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="masthead"><a href="./" class="wordmark">atelier<span>®</span></a><span class="edition">OUTILS MATHÉMATIQUES / N° 01</span></header>
+    <main>
+        <section class="introduction"><p class="eyebrow">PRÉCISION & SIMPLICITÉ</p><h1>De la suite<br>dans les <em>idées.</em></h1><p>Un espace pour poser vos calculs,<br>explorer et garder le fil.</p><p class="credit">Crédit : FADLI Hamza</p><div class="index"><span>01 — CALCULATRICE SCIENTIFIQUE</span><span>JAVA / SPRING BOOT</span></div></section>
+        <section class="workspace" aria-label="Espace de calcul">
+            <div class="calculator">
+                <div class="device-header"><h2>atelier <span>SC–01</span></h2><span class="indicator">DEGRÉS</span></div>
+                <div class="screen"><label for="display">EXPRESSION</label><input id="display" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="0" aria-describedby="status"><p id="status" role="status" aria-live="polite">À vous de jouer.</p></div>
+                <div class="scientific-keys" aria-label="Fonctions scientifiques">
+                    <button data-value="sin(">sin</button><button data-value="cos(">cos</button><button data-value="tan(">tan</button><button data-value="sqrt(" aria-label="Racine carrée">√x</button>
+                    <button data-value="log(">log</button><button data-value="ln(">ln</button><button data-value="^2" aria-label="Au carré">x²</button><button data-value="^" aria-label="Puissance">xʸ</button>
+                </div>
+                <div class="keys" aria-label="Clavier de calcul">
+                    <button data-action="clear" class="clear">AC</button><button data-value="(">(</button><button data-value=")">)</button><button data-action="delete" aria-label="Supprimer un caractère">⌫</button>
+                    <button data-value="7" class="number">7</button><button data-value="8" class="number">8</button><button data-value="9" class="number">9</button><button data-value="/" class="operator" aria-label="Diviser">÷</button>
+                    <button data-value="4" class="number">4</button><button data-value="5" class="number">5</button><button data-value="6" class="number">6</button><button data-value="*" class="operator" aria-label="Multiplier">×</button>
+                    <button data-value="1" class="number">1</button><button data-value="2" class="number">2</button><button data-value="3" class="number">3</button><button data-value="-" class="operator" aria-label="Soustraire">−</button>
+                    <button data-value="0" class="number">0</button><button data-value="." class="number" aria-label="Point décimal">.</button><button data-action="calculate" class="equals" aria-label="Calculer">=</button><button data-value="+" class="operator" aria-label="Additionner">+</button>
+                </div>
+            </div>
+            <aside class="notebook" aria-labelledby="history-title"><div class="notebook-header"><h2 id="history-title">Le fil des calculs<span id="history-count">00</span></h2><button id="clear-history" class="text-button">Effacer</button></div><p class="notebook-note">Les 10 derniers résultats, sur cet appareil.</p><div id="history"><p class="empty-history">Chaque idée commence<br>par un premier calcul.<span>Vos résultats apparaîtront ici.</span></p></div></aside>
+        </section>
+    </main>
+</body>
+</html>
