@@ -2,21 +2,10 @@ const display = document.getElementById('display');
 const status = document.getElementById('status');
 const historyDiv = document.getElementById('history');
 const calculateButton = document.querySelector('[data-action="calculate"]');
-const storageKey = 'atelier-calcul-history';
-let history = loadHistory();
+
+let history = [];
 let revision = 0;
 let pending = false;
-
-function loadHistory() {
-    try {
-        const saved = JSON.parse(localStorage.getItem(storageKey));
-        return Array.isArray(saved) ? saved.filter(item => item && typeof item.expression === 'string'
-            && item.expression.length <= 512 && typeof item.result === 'number'
-            && Number.isFinite(item.result)).slice(0, 10) : [];
-    } catch {
-        return [];
-    }
-}
 
 function setStatus(message, error = false) {
     status.textContent = message;
@@ -48,14 +37,6 @@ function deleteLastChar() {
     display.setRangeText('', start === end ? Math.max(0, start - 1) : start, end, 'end');
     display.focus();
     changed();
-}
-
-function saveHistory() {
-    try {
-        localStorage.setItem(storageKey, JSON.stringify(history));
-    } catch {
-        setStatus('Calcul conservé pour cette session uniquement.');
-    }
 }
 
 function renderHistory() {
@@ -125,7 +106,6 @@ async function calculate() {
             display.setSelectionRange(display.value.length, display.value.length);
             setStatus('Résultat calculé · trigonométrie en degrés.');
         }
-        saveHistory();
     } catch (error) {
         if (revision === submittedRevision) {
             setStatus(error.name === 'AbortError' ? 'Délai dépassé. Réessayez.'
@@ -147,7 +127,6 @@ document.querySelector('[data-action="delete"]').addEventListener('click', delet
 calculateButton.addEventListener('click', calculate);
 document.getElementById('clear-history').addEventListener('click', () => {
     history = [];
-    saveHistory();
     renderHistory();
 });
 display.addEventListener('input', changed);
